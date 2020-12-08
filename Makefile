@@ -1,7 +1,7 @@
 ELECTRUM_VERSION = $(strip $(shell cat VERSION))
 GIT_COMMIT = $(strip $(shell git rev-parse --short HEAD))
 
-DOCKER_IMAGE ?= osminogin/electrum-daemon
+DOCKER_IMAGE ?= internetportal/docker-electrum-daemon
 DOCKER_TAG = $(ELECTRUM_VERSION)
 
 # Build Docker image
