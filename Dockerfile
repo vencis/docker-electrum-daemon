@@ -22,7 +22,7 @@ ENV ELECTRUM_USER electrum
 ENV ELECTRUM_PASSWORD electrumz		# XXX: CHANGE REQUIRED!
 ENV ELECTRUM_HOME /home/$ELECTRUM_USER
 
-RUN apk --update-cache add --virtual build-dependencies gcc musl-dev && \
+RUN apk --update-cache add --virtual build-dependencies gcc musl-dev libffi-dev openssl-dev python3-dev && \
 	adduser -D $ELECTRUM_USER && \
 	pip3 install cryptography && \
 	pip3 install https://download.electrum.org/${ELECTRUM_VERSION}/Electrum-${ELECTRUM_VERSION}.tar.gz && \	
