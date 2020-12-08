@@ -24,7 +24,7 @@ ENV ELECTRUM_HOME /home/$ELECTRUM_USER
 
 RUN apk --update-cache add --virtual build-dependencies gcc musl-dev && \
 	adduser -D $ELECTRUM_USER && \
-	pip3 install cryptography \
+	pip3 install cryptography && \
 	pip3 install https://download.electrum.org/${ELECTRUM_VERSION}/Electrum-${ELECTRUM_VERSION}.tar.gz && \	
 	apk del build-dependencies
 
