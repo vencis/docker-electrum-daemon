@@ -3,15 +3,15 @@ FROM python:3.7-alpine
 ARG BUILD_DATE
 ARG VCS_REF
 ARG VERSION
-LABEL maintainer="osintsev@gmail.com" \
-	org.label-schema.vendor="Distirbuted Solutions, Inc." \
+LABEL maintainer="devs@internet-portal.cz" \
+	org.label-schema.vendor="Internet Portal s.r.o." \
 	org.label-schema.build-date=$BUILD_DATE \
 	org.label-schema.name="Electrum wallet (RPC enabled)" \
 	org.label-schema.description="Electrum wallet with JSON-RPC enabled (daemon mode)" \
 	org.label-schema.version=$VERSION \
 	org.label-schema.vcs-ref=$VCS_REF \
-	org.label-schema.vcs-url="https://github.com/osminogin/docker-electrum-daemon" \
-	org.label-schema.usage="https://github.com/osminogin/docker-electrum-daemon#getting-started" \
+	org.label-schema.vcs-url="https://github.com/vencis/docker-electrum-daemon" \
+	org.label-schema.usage="https://github.com/vencis/docker-electrum-daemon#getting-started" \
 	org.label-schema.license="MIT" \
 	org.label-schema.url="https://electrum.org" \
 	org.label-schema.docker.cmd='docker run -d --name electrum-daemon --publish 127.0.0.1:7000:7000 --volume /srv/electrum:/data osminogin/electrum-daemon' \
