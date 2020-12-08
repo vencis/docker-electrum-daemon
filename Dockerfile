@@ -17,7 +17,7 @@ LABEL maintainer="osintsev@gmail.com" \
 	org.label-schema.docker.cmd='docker run -d --name electrum-daemon --publish 127.0.0.1:7000:7000 --volume /srv/electrum:/data osminogin/electrum-daemon' \
 	org.label-schema.schema-version="1.0"
 
-ENV ELECTRUM_VERSION 4.0.6
+ENV ELECTRUM_VERSION $VERSION
 ENV ELECTRUM_USER electrum
 ENV ELECTRUM_PASSWORD electrumz		# XXX: CHANGE REQUIRED!
 ENV ELECTRUM_HOME /home/$ELECTRUM_USER
