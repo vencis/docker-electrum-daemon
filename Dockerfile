@@ -22,16 +22,22 @@ ENV ELECTRUM_USER electrum
 ENV ELECTRUM_PASSWORD electrumz    # XXX: CHANGE REQUIRED!
 ENV ELECTRUM_HOME /home/$ELECTRUM_USER
 
-RUN apk --update-cache add --virtual build-dependencies build-base gcc musl-dev libffi-dev openssl-dev autoconf automake pkgconfig libtool libffi && \
+RUN apk --update-cache add --virtual build-dependencies build-base gcc musl-dev libffi-dev openssl-dev automake autoconf libtool && \
   adduser -D $ELECTRUM_USER && \
-  pip3 install cryptography coincurve && \
-  pip3 install https://download.electrum.org/${ELECTRUM_VERSION}/Electrum-${ELECTRUM_VERSION}.tar.gz && \
-  apk del build-dependencies build-base gcc musl-dev libffi-dev openssl-dev autoconf automake pkgconfig libtool libffi
+  pip3 install cryptography && \
+  pip3 install https://download.electrum.org/${ELECTRUM_VERSION}/Electrum-${ELECTRUM_VERSION}.tar.gz
+
+RUN apk add --no-cache git
 
 RUN mkdir -p /data ${ELECTRUM_HOME} && \
   ln -sf /data ${ELECTRUM_HOME}/.electrum && \
-  chown ${ELECTRUM_USER} ${ELECTRUM_HOME}/.electrum /data && \
-  ln -s /usr/local/lib/python3.7/site-packages/coincurve/_libsecp256k1.cpython-37m-x86_64-linux-gnu.so /usr/local/lib/python3.7/site-packages/electrum/libsecp256k1.so.0
+  wget -c https://download.electrum.org/${ELECTRUM_VERSION}/Electrum-${ELECTRUM_VERSION}.tar.gz -O - | tar -xz -C ${ELECTRUM_HOME} && \
+  chown ${ELECTRUM_USER} ${ELECTRUM_HOME}/.electrum /data
+
+RUN sh ${ELECTRUM_HOME}/Electrum-${ELECTRUM_VERSION}/contrib/make_libsecp256k1.sh && \
+  ln -sf ${ELECTRUM_HOME}/Electrum-${ELECTRUM_VERSION}/electrum/libsecp256k1.so.0 /usr/local/lib/python3.7/site-packages/electrum/libsecp256k1.so.0
+
+RUN apk del build-dependencies build-base gcc musl-dev libffi-dev openssl-dev automake autoconf libtool git
 
 USER $ELECTRUM_USER
 WORKDIR $ELECTRUM_HOME
