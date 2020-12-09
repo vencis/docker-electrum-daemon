@@ -1,8 +1,5 @@
 # docker-electrum-daemon
 
- [![](https://images.microbadger.com/badges/version/osminogin/electrum-daemon.svg)](https://microbadger.com/images/osminogin/electrum-daemon) [![](https://img.shields.io/docker/build/osminogin/electrum-daemon.svg)](https://hub.docker.com/r/osminogin/electrum-daemon/builds/) [![](https://images.microbadger.com/badges/commit/osminogin/electrum-daemon.svg)](https://microbadger.com/images/osminogin/electrum-daemon) [![](https://img.shields.io/docker/stars/osminogin/electrum-daemon.svg)](https://hub.docker.com/r/osminogin/electrum-daemon) [![](https://images.microbadger.com/badges/image/osminogin/electrum-daemon.svg)](https://microbadger.com/images/osminogin/electrum-daemon) [![License: MIT](https://img.shields.io/badge/License-MIT-black.svg)](https://opensource.org/licenses/MIT)
-
-
 **Electrum client 4.0.6 running as a daemon in docker container with JSON-RPC enabled.**
 
 [Electrum client](https://electrum.org/) is light bitcoin wallet software operates through supernodes (Electrum server instances actually).
