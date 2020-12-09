@@ -31,7 +31,7 @@ docker run --rm --name electrum \
     --env TESTNET=false \
     --publish 127.0.0.1:7000:7000 \
     --volume /srv/electrum:/data \
-    osminogin/electrum-daemon
+    internetportal/docker-electrum-daemon
 ```
 ```bash
 docker exec -it electrum-daemon electrum create
