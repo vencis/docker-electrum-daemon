@@ -28,9 +28,9 @@ RUN apk --update-cache add --virtual build-dependencies build-base gcc musl-dev 
   pip3 install https://download.electrum.org/${ELECTRUM_VERSION}/Electrum-${ELECTRUM_VERSION}.tar.gz && \
   apk del build-dependencies build-base gcc musl-dev libffi-dev openssl-dev autoconf automake pkgconfig libtool libffi
 
-RUN mkdir -p ${ELECTRUM_HOME}/.electrum/ /data && \
-	ln -sf ${ELECTRUM_HOME}/.electrum/ /data && \
-	chown ${ELECTRUM_USER} ${ELECTRUM_HOME}/.electrum /data && \
+RUN mkdir -p /data ${ELECTRUM_HOME} && \
+  ln -sf /data ${ELECTRUM_HOME}/.electrum && \
+  chown ${ELECTRUM_USER} ${ELECTRUM_HOME}/.electrum /data && \
   ln -s /usr/local/lib/python3.7/site-packages/coincurve/_libsecp256k1.cpython-37m-x86_64-linux-gnu.so /usr/local/lib/python3.7/site-packages/electrum/libsecp256k1.so.0
 
 USER $ELECTRUM_USER
