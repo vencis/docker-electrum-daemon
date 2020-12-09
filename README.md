@@ -35,8 +35,8 @@ docker run --rm --name electrum \
 ```
 ```bash
 docker exec -it electrum-daemon electrum create
-docker exec -it electrum-daemon electrum daemon load_wallet
-docker exec -it electrum-daemon electrum daemon status
+docker exec -it electrum-daemon electrum load_wallet
+docker exec -it electrum-daemon electrum getinfo
 {
     "auto_connect": true,
     "blockchain_height": 505136,
@@ -60,9 +60,9 @@ docker exec -it electrum-daemon electrum daemon status
 
 ```bash
 docker-compose up
-docker-compose exec electrum electrum daemon status
+docker-compose exec electrum electrum getinfo
 docker-compose exec electrum electrum create
-docker-compose exec electrum electrum daemon load_wallet
+docker-compose exec electrum electrum load_wallet
 curl --data-binary '{"id":"1","method":"listaddresses"}' http://electrum:electrumz@localhost:7000
 ```
 
