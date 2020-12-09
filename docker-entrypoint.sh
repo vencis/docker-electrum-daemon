@@ -20,6 +20,13 @@ electrum $FLAGS setconfig rpcport 7000
 # Run application
 electrum $FLAGS daemon -d
 
+# Loading wallet if exists
+if [ -e "/home/electrum/.electrum/wallets/default_wallet" ]
+then
+  echo "Loading wallet."
+  electrum load_wallet
+fi
+
 # Wait forever
 while true; do
   tail -f /dev/null & wait ${!}
