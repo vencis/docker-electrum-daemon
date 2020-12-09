@@ -3,7 +3,7 @@
  [![](https://images.microbadger.com/badges/version/osminogin/electrum-daemon.svg)](https://microbadger.com/images/osminogin/electrum-daemon) [![](https://img.shields.io/docker/build/osminogin/electrum-daemon.svg)](https://hub.docker.com/r/osminogin/electrum-daemon/builds/) [![](https://images.microbadger.com/badges/commit/osminogin/electrum-daemon.svg)](https://microbadger.com/images/osminogin/electrum-daemon) [![](https://img.shields.io/docker/stars/osminogin/electrum-daemon.svg)](https://hub.docker.com/r/osminogin/electrum-daemon) [![](https://images.microbadger.com/badges/image/osminogin/electrum-daemon.svg)](https://microbadger.com/images/osminogin/electrum-daemon) [![License: MIT](https://img.shields.io/badge/License-MIT-black.svg)](https://opensource.org/licenses/MIT)
 
 
-**Electrum client running as a daemon in docker container with JSON-RPC enabled.**
+**Electrum client 4.0.6 running as a daemon in docker container with JSON-RPC enabled.**
 
 [Electrum client](https://electrum.org/) is light bitcoin wallet software operates through supernodes (Electrum server instances actually).
 
@@ -57,7 +57,7 @@ docker exec -it electrum-daemon electrum getinfo
 
 #### docker-compose
 
-[docker-compose.yml](https://github.com/osminogin/docker-electrum-daemon/blob/master/docker-compose.yml) to see minimal working setup. When running in production, you can use this as a guide.
+[docker-compose.yml](https://github.com/vencis/docker-electrum-daemon/blob/master/docker-compose.yml) to see minimal working setup. When running in production, you can use this as a guide.
 
 ```bash
 docker-compose up
@@ -78,5 +78,5 @@ Always link electrum daemon to containers or bind to localhost directly and not 
 
 ## License
 
-See [LICENSE](https://github.com/osminogin/docker-electrum-daemon/blob/master/LICENSE)
+See [LICENSE](https://github.com/vencis/docker-electrum-daemon/blob/master/LICENSE)
 
