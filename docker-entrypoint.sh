@@ -7,7 +7,7 @@ if [ "$TESTNET" = true ]; then
 fi
 
 # Graceful shutdown
-trap 'pkill -TERM -P1; electrum stop; exit 0' SIGTERM
+trap 'pkill -TERM -P1; electrum $FLAGS stop; exit 0' SIGTERM
 
 # Run application
 electrum $FLAGS daemon -d
@@ -22,7 +22,7 @@ electrum $FLAGS setconfig rpcport 7000
 if [ -e "/home/electrum/.electrum/wallets/default_wallet" ]
 then
   echo "Loading wallet."
-  electrum load_wallet
+  electrum $FLAGS load_wallet
 fi
 
 # Wait forever
