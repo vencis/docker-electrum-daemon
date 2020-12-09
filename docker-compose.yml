@@ -1,11 +1,15 @@
 version: '3'
-
 services:
   electrum:
-    build: .
+    container_name: electrum-daemon
+    image: internetportal/docker-electrum-daemon
     ports:
-      - 127.0.0.1:7000:7000
+      - 7000:7000
     environment:
       ELECTRUM_USER: electrum
-      ELECTRUM_PASSWORD: changeme
-      TESTNET: False
+      ELECTRUM_PASSWORD: secret-password
+      TESTNET: "False"
+    volumes:
+      - ./data:/data
+    restart: unless-stopped
+    network_mode: bridge
