@@ -37,17 +37,15 @@ docker exec -it electrum-daemon electrum load_wallet
 docker exec -it electrum-daemon electrum getinfo
 {
     "auto_connect": true,
-    "blockchain_height": 505136,
+    "blockchain_height": 660633,
     "connected": true,
-    "fee_per_kb": 427171,
+    "default_wallet": "/home/electrum/.electrum/wallets/default_wallet",
+    "fee_per_kb": 59261,
     "path": "/home/electrum/.electrum",
-    "server": "us01.hamster.science",
-    "server_height": 505136,
+    "server": "blockstream.info",
+    "server_height": 660633,
     "spv_nodes": 10,
-    "version": "3.0.6",
-    "wallets": {
-        "/home/electrum/.electrum/wallets/default_wallet": true
-    }
+    "version": "4.0.6"
 }
 ```
 
