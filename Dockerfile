@@ -22,11 +22,11 @@ ENV ELECTRUM_USER electrum
 ENV ELECTRUM_PASSWORD electrumz		# XXX: CHANGE REQUIRED!
 ENV ELECTRUM_HOME /home/$ELECTRUM_USER
 
-RUN apk --update-cache add --virtual build-dependencies gcc musl-dev libffi-dev openssl-dev python3-dev autoconf && \
-	adduser -D $ELECTRUM_USER && \
-	pip3 install cryptography secp256k1 && \
-	pip3 install https://download.electrum.org/${ELECTRUM_VERSION}/Electrum-${ELECTRUM_VERSION}.tar.gz && \	
-	apk del build-dependencies
+RUN apk --update-cache add --virtual build-dependencies build-base gcc musl-dev libffi-dev openssl-dev autoconf automake pkgconfig libtool libffi && \
+  adduser -D $ELECTRUM_USER && \
+  pip3 install cryptography coincurve && \
+  pip3 install https://download.electrum.org/${ELECTRUM_VERSION}/Electrum-${ELECTRUM_VERSION}.tar.gz && \
+  apk del build-dependencies build-base gcc autoconf automake pkgconfig openssl-dev
 
 RUN mkdir -p /data ${ELECTRUM_HOME} && \
 	ln -sf /data ${ELECTRUM_HOME}/.electrum && \
