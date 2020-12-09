@@ -27,6 +27,7 @@ Star this project on Docker Hub :star2: https://hub.docker.com/r/osminogin/elect
 Running with Docker:
 
 ```bash
+chown -R 1000:1000 ./data
 docker run --rm --name electrum \
     --env TESTNET=false \
     --publish 127.0.0.1:7000:7000 \
