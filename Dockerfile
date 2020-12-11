@@ -32,7 +32,7 @@ RUN apk add --no-cache --virtual .build-deps build-base gcc musl-dev libffi-dev 
   sh ${ELECTRUM_HOME}/Electrum-${ELECTRUM_VERSION}/contrib/make_libsecp256k1.sh && \
   pip3 install --no-cache-dir ${ELECTRUM_HOME}/Electrum-${ELECTRUM_VERSION} && \
   cp ${ELECTRUM_HOME}/Electrum-${ELECTRUM_VERSION}/electrum/libsecp256k1.so.0 /usr/local/lib/python3.8/site-packages/electrum/libsecp256k1.so.0 && \
-  rm -rf ${ELECTRUM_HOME}/Electrum-${ELECTRUM_VERSION}/ && \
+  rm -rf ${ELECTRUM_HOME}/Electrum-${ELECTRUM_VERSION} && \
   apk del --no-cache .build-deps
 
 USER $ELECTRUM_USER
