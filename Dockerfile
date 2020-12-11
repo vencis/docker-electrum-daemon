@@ -24,18 +24,15 @@ ENV ELECTRUM_HOME /home/$ELECTRUM_USER
 
 RUN apk add --no-cache --virtual .build-deps build-base gcc musl-dev libffi-dev openssl-dev automake autoconf libtool git && \
   adduser -D $ELECTRUM_USER && \
-  pip3 install --no-cache-dir cryptography
-
-RUN mkdir -p /data ${ELECTRUM_HOME} && \
+  pip3 install --no-cache-dir cryptography && \
+  mkdir -p /data ${ELECTRUM_HOME} && \
   ln -sf /data ${ELECTRUM_HOME}/.electrum && \
   wget -c https://download.electrum.org/${ELECTRUM_VERSION}/Electrum-${ELECTRUM_VERSION}.tar.gz -O - | tar -xz -C ${ELECTRUM_HOME} && \
-  chown ${ELECTRUM_USER} ${ELECTRUM_HOME}/.electrum /data
-
-RUN sh ${ELECTRUM_HOME}/Electrum-${ELECTRUM_VERSION}/contrib/make_libsecp256k1.sh && \
+  chown ${ELECTRUM_USER} ${ELECTRUM_HOME}/.electrum /data && \
+  sh ${ELECTRUM_HOME}/Electrum-${ELECTRUM_VERSION}/contrib/make_libsecp256k1.sh && \
   pip3 install --no-cache-dir ${ELECTRUM_HOME}/Electrum-${ELECTRUM_VERSION} && \
-  ln -sf ${ELECTRUM_HOME}/Electrum-${ELECTRUM_VERSION}/electrum/libsecp256k1.so.0 /usr/local/lib/python3.8/site-packages/electrum/libsecp256k1.so.0
-
-RUN apk del .build-deps
+  ln -sf ${ELECTRUM_HOME}/Electrum-${ELECTRUM_VERSION}/electrum/libsecp256k1.so.0 /usr/local/lib/python3.8/site-packages/electrum/libsecp256k1.so.0 && \
+  apk del --no-cache .build-deps
 
 USER $ELECTRUM_USER
 WORKDIR $ELECTRUM_HOME
