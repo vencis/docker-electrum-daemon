@@ -1,4 +1,4 @@
-FROM python:3.7-alpine
+FROM python:3.8-alpine
 
 ARG BUILD_DATE
 ARG VCS_REF
@@ -22,10 +22,9 @@ ENV ELECTRUM_USER electrum
 ENV ELECTRUM_PASSWORD electrumz    # XXX: CHANGE REQUIRED!
 ENV ELECTRUM_HOME /home/$ELECTRUM_USER
 
-RUN apk add --no-cache --virtual build-dependencies build-base gcc musl-dev libffi-dev openssl-dev automake autoconf libtool git && \
+RUN apk add --no-cache --virtual .build-deps build-base gcc musl-dev libffi-dev openssl-dev automake autoconf libtool git && \
   adduser -D $ELECTRUM_USER && \
-  pip3 install cryptography && \
-  pip3 install https://download.electrum.org/${ELECTRUM_VERSION}/Electrum-${ELECTRUM_VERSION}.tar.gz
+  pip3 install --no-cache-dir cryptography
 
 RUN mkdir -p /data ${ELECTRUM_HOME} && \
   ln -sf /data ${ELECTRUM_HOME}/.electrum && \
@@ -33,9 +32,10 @@ RUN mkdir -p /data ${ELECTRUM_HOME} && \
   chown ${ELECTRUM_USER} ${ELECTRUM_HOME}/.electrum /data
 
 RUN sh ${ELECTRUM_HOME}/Electrum-${ELECTRUM_VERSION}/contrib/make_libsecp256k1.sh && \
-  ln -sf ${ELECTRUM_HOME}/Electrum-${ELECTRUM_VERSION}/electrum/libsecp256k1.so.0 /usr/local/lib/python3.7/site-packages/electrum/libsecp256k1.so.0
+  pip3 install --no-cache-dir ${ELECTRUM_HOME}/Electrum-${ELECTRUM_VERSION} && \
+  ln -sf ${ELECTRUM_HOME}/Electrum-${ELECTRUM_VERSION}/electrum/libsecp256k1.so.0 /usr/local/lib/python3.8/site-packages/electrum/libsecp256k1.so.0
 
-RUN apk del build-dependencies
+RUN apk del .build-deps
 
 USER $ELECTRUM_USER
 WORKDIR $ELECTRUM_HOME
