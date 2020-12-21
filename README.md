@@ -1,6 +1,6 @@
 # docker-electrum-daemon
 
-**Electrum client 4.0.6 running as a daemon in docker container with JSON-RPC enabled.**
+**Electrum client 4.0.9 running as a daemon in docker container with JSON-RPC enabled.**
 
 [Electrum client](https://electrum.org/) is light bitcoin wallet software operates through supernodes (Electrum server instances actually).
 
