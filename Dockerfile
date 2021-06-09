@@ -22,7 +22,7 @@ ENV ELECTRUM_USER electrum
 ENV ELECTRUM_PASSWORD electrumz    # XXX: CHANGE REQUIRED!
 ENV ELECTRUM_HOME /home/$ELECTRUM_USER
 
-RUN apk add --no-cache --virtual .build-deps build-base gcc musl-dev libffi-dev openssl-dev automake autoconf libtool git && \
+RUN apk add --no-cache --virtual .build-deps build-base gcc musl-dev libffi-dev openssl-dev automake autoconf libtool git cargo python3-dev && \
   adduser -D $ELECTRUM_USER && \
   pip3 install --no-cache-dir cryptography && \
   mkdir -p /data ${ELECTRUM_HOME} && \
