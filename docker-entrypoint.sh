@@ -19,7 +19,7 @@ electrum $FLAGS setconfig rpchost 0.0.0.0
 electrum $FLAGS setconfig rpcport 7000
 
 # Loading wallet if exists
-if [ -e "/home/electrum/.electrum/wallets/default_wallet" ]
+if [ -e "/home/electrum/.electrum/wallets/default_wallet" || -e "/home/electrum/.electrum/testnet/wallets/default_wallet"]
 then
   echo "Loading wallet."
   electrum $FLAGS load_wallet
